@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useRef } from "react"
+import DroneList from "./components/DroneList"
 
 function App() {
+  const [drones, setDrones] = useState([])
+  const ws = useRef(null)
+
+  useEffect(() => {
+    const socket = new WebSocket("ws://localhost:3001")
+    ws.current = socket
+
+    ws.current.onopen = () => {
+      console.log("opened")
+    }
+
+    ws.current.onclose = () => {
+      console.log("closed")
+    }
+
+    ws.current.onmessage = (event) => {
+      console.log("message received")
+      setDrones(JSON.parse(event.data))
+    }
+
+    return () => {
+      socket.close()
+    }
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DroneList drones={drones} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
