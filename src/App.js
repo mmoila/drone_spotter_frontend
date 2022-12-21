@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react"
+import NavBar from "./components/NavBar"
 import DroneList from "./components/DroneList"
+import Container from "@mui/material/Container"
 
 function App() {
   const [drones, setDrones] = useState([])
@@ -28,9 +30,12 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <DroneList drones={drones} />
-    </div>
+    <>
+      <NavBar />
+      <Container className="App">
+        <DroneList drones={drones} />
+      </Container>
+    </>
   )
 }
 
