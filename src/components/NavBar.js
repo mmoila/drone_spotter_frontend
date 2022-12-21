@@ -3,13 +3,14 @@ import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import IconButton from "@mui/material/IconButton"
-import Typography from "@mui/material/Typography"
 import Menu from "@mui/material/Menu"
 import Container from "@mui/material/Container"
 import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import TrackChangesIcon from "@mui/icons-material/TrackChanges"
 import MenuIcon from "@mui/icons-material/Menu"
+import Link from "@mui/material/Link"
+import { Link as RouterLink } from "react-router-dom"
 
 const pages = ["Mapview"]
 
@@ -31,11 +32,11 @@ const NavBar = () => {
           <TrackChangesIcon
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
           />
-          <Typography
+          <Link
             variant="h6"
             noWrap
-            component="a"
-            href="/"
+            component={RouterLink}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -47,7 +48,7 @@ const NavBar = () => {
             }}
           >
             droneSTALKER
-          </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -80,7 +81,9 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link component={RouterLink} to="/mapview" textAlign="center">
+                    {page}
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -88,16 +91,16 @@ const NavBar = () => {
           <TrackChangesIcon
             sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
           />
-          <Typography
+          <Link
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component={RouterLink}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "roboto",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -105,17 +108,15 @@ const NavBar = () => {
             }}
           >
             droneSTALKER
-          </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              component={RouterLink}
+              to={"/mapview"}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Mapview
+            </Button>
           </Box>
         </Toolbar>
       </Container>

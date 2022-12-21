@@ -10,7 +10,9 @@ const DroneList = ({ drones }) => {
     const time = new Date(timeString)
     return time.toUTCString().slice(0, -7)
   }
-
+  if (!drones) {
+    return
+  }
   return (
     <TableContainer component={Paper} sx={{ marginTop: 5 }}>
       <Typography variant="h3" component={"h1"} m={5} align={"center"}>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import NavBar from "./components/NavBar"
 import DroneList from "./components/DroneList"
 import Container from "@mui/material/Container"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
   const [drones, setDrones] = useState([])
@@ -33,7 +34,10 @@ function App() {
     <>
       <NavBar />
       <Container className="App">
-        <DroneList drones={drones} />
+        <Routes>
+          <Route path="/" element={<DroneList drones={drones} />} />
+          <Route path="/mapview" element={<div>Map here!</div>} />
+        </Routes>
       </Container>
     </>
   )
