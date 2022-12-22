@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar"
 import DroneList from "./components/DroneList"
 import Container from "@mui/material/Container"
 import { Routes, Route } from "react-router-dom"
+import DroneMap from "./components/DroneMap"
 
 function App() {
   const [drones, setDrones] = useState([])
@@ -36,7 +37,7 @@ function App() {
       <Container className="App">
         <Routes>
           <Route path="/" element={<DroneList drones={drones} />} />
-          <Route path="/mapview" element={<div>Map here!</div>} />
+          <Route path="/mapview" element={<DroneMap drones={drones} />} />
         </Routes>
       </Container>
     </>
