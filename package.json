@@ -21,10 +21,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "REACT_APP_ENV=dev npm start",
     "build": "react-scripts build",
+    "deploy": "cp -r build ../drone_spotter_backend",
+    "build-deploy": "npm run build && npm run deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -7,21 +7,30 @@ import DroneMap from "./components/DroneMap"
 
 function App() {
   const [drones, setDrones] = useState([])
-  const ws = useRef(null)
+  const wss = useRef(null)
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:3001")
-    ws.current = socket
+    let url
+    if (process.env.REACT_APP_ENV === "dev") {
+      url = "ws://localhost:3001"
+    } else {
+      // eslint-disable-next-line no-restricted-globals
+      url = new URL("/", location.href)
+      url.protocol = "wss"
+    }
 
-    ws.current.onopen = () => {
+    const socket = new WebSocket(url)
+    wss.current = socket
+
+    wss.current.onopen = () => {
       console.log("opened")
     }
 
-    ws.current.onclose = () => {
+    wss.current.onclose = () => {
       console.log("closed")
     }
 
-    ws.current.onmessage = (event) => {
+    wss.current.onmessage = (event) => {
       console.log("message received")
       setDrones(JSON.parse(event.data))
     }
