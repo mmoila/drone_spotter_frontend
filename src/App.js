@@ -16,7 +16,7 @@ function App() {
     } else {
       // eslint-disable-next-line no-restricted-globals
       url = new URL("/", location.href)
-      url.protocol = "wss"
+      url.protocol = url.protocol === "https:" ? "wss" : "ws"
     }
 
     const socket = new WebSocket(url)
