@@ -1,0 +1,22 @@
+import { Label, Tag, Text } from "react-konva"
+
+const DroneDetails = ({ drones, showDetailsFor, calculateScaledPosition }) => {
+  const drone = drones.find(
+    (d) => d.serialNumber === showDetailsFor.serialNumber
+  )
+  if (!drone) {
+    return null
+  }
+  const pos = calculateScaledPosition(drone.position)
+  return (
+    <Label x={pos[0]} y={pos[1] + 10}>
+      <Tag fill="white" cornerRadius={2} shadowBlur={2} shadowOffsetY={2} />
+      <Text
+        text={`serial: ${drone.serialNumber} \nowner: ${drone.owner.name}`}
+        padding={5}
+      />
+    </Label>
+  )
+}
+
+export default DroneDetails

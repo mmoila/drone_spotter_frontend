@@ -1,6 +1,6 @@
 import { RegularPolygon } from "react-konva"
 
-const DroneMarker = ({ xPos, yPos }) => {
+const DroneMarker = ({ xPos, yPos, setShowDetailsFor }) => {
   return (
     <RegularPolygon
       x={xPos}
@@ -10,7 +10,9 @@ const DroneMarker = ({ xPos, yPos }) => {
       fill="grey"
       strokeWidth={1}
       stroke="white"
-    ></RegularPolygon>
+      onClick={setShowDetailsFor}
+      onTouchEnd={setShowDetailsFor}
+    />
   )
 }
 

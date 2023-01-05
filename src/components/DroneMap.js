@@ -1,12 +1,15 @@
 import { Circle, Stage, Layer, Group, Text } from "react-konva"
-import { Paper, Container, Box } from "@mui/material"
-import { useRef } from "react"
+import { Typography, Container, Box } from "@mui/material"
+import { useRef, useState } from "react"
 import DroneMarker from "./DroneMarker"
+import DroneDetails from "./DroneDetails"
 
 const DroneMap = ({ drones }) => {
   const ndzCircle = useRef()
   const nest = useRef()
-  const wholeWidth = 500
+  const [showDetailsFor, setShowDetailsFor] = useState(null)
+  const wholeWidth = 1000
+  const circleDiameter = 500
   const scaleMultiplier = 2.5
 
   const calculateScaledPosition = (originalPos) => {
@@ -22,64 +25,82 @@ const DroneMap = ({ drones }) => {
     ]
   }
 
+  const renderDrone = (drone) => {
+    const pos = calculateScaledPosition(drone.position)
+
+    return (
+      <DroneMarker
+        key={drone.serialNumber}
+        name={drone.serialNumber}
+        xPos={pos[0]}
+        yPos={pos[1]}
+        setShowDetailsFor={() =>
+          !showDetailsFor || showDetailsFor.serialNumber !== drone.serialNumber
+            ? setShowDetailsFor(drone)
+            : setShowDetailsFor(null)
+        }
+      />
+    )
+  }
+
   return (
     <Container
       sx={{
         display: "flex",
-        marginTop: 10,
-        justifyContent: "center",
+        flexDirection: "column",
+        marginTop: 5,
+        alignItems: "center",
       }}
     >
-      <Box width={wholeWidth} height={wholeWidth}>
-        <Paper
-          variant="outlined"
-          width={1}
-          height={1}
-          sx={{ borderColor: "black", backgroundColor: "#white" }}
+      <Typography variant="h3" component={"h1"} m={5} align={"center"}>
+        Intruders on Map
+      </Typography>
+      <Box display={"flex"} width={wholeWidth} height={wholeWidth}>
+        <Stage
+          x={(wholeWidth - circleDiameter) / 2}
+          width={wholeWidth}
+          height={wholeWidth}
         >
-          <Stage width={wholeWidth} height={wholeWidth}>
-            <Layer>
-              <Group>
-                <Circle
-                  ref={nest}
-                  radius={2.5}
-                  fill="black"
-                  x={wholeWidth / 2}
-                  y={wholeWidth / 2}
+          <Layer>
+            <Group>
+              <Circle
+                ref={nest}
+                radius={2.5}
+                fill="black"
+                x={circleDiameter / 2}
+                y={circleDiameter / 2}
+              />
+              <Text
+                x={circleDiameter / 9}
+                y={circleDiameter / 8}
+                rotation={-40}
+                text="NDZ"
+                fontSize={22}
+                fontStyle="bold"
+              />
+              <Circle
+                ref={ndzCircle}
+                radius={100 * scaleMultiplier}
+                x={circleDiameter / 2}
+                y={circleDiameter / 2}
+                fill="Red"
+                opacity={0.3}
+                strokeWidth={5}
+                stroke="white"
+              ></Circle>
+              {drones.map((drone) => {
+                return renderDrone(drone)
+              })}
+              {showDetailsFor ? (
+                <DroneDetails
+                  drones={drones}
+                  showDetailsFor={showDetailsFor}
+                  calculateScaledPosition={calculateScaledPosition}
                 />
-                <Text
-                  x={wholeWidth / 9}
-                  y={wholeWidth / 8}
-                  rotation={-40}
-                  text="NDZ"
-                  fontSize={22}
-                  fontStyle="bold"
-                />
-                <Circle
-                  ref={ndzCircle}
-                  radius={100 * scaleMultiplier}
-                  x={wholeWidth / 2}
-                  y={wholeWidth / 2}
-                  fill="Red"
-                  opacity={0.3}
-                  strokeWidth={5}
-                  stroke="white"
-                ></Circle>
-                {drones.map((drone) => {
-                  const pos = calculateScaledPosition(drone.position)
-
-                  return (
-                    <DroneMarker
-                      key={drone.serialNumber}
-                      xPos={pos[0]}
-                      yPos={pos[1]}
-                    />
-                  )
-                })}
-              </Group>
-            </Layer>
-          </Stage>
-        </Paper>
+              ) : null}
+            </Group>
+          </Layer>
+        </Stage>
       </Box>
     </Container>
   )
