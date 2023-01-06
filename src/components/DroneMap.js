@@ -52,17 +52,42 @@ const DroneMap = ({ drones }) => {
         alignItems: "center",
       }}
     >
-      <Typography variant="h3" component={"h1"} m={5} align={"center"}>
-        Intruders on Map
+      <Typography
+        variant="h4"
+        component={"h1"}
+        m={5}
+        align={"center"}
+        color="white"
+      >
+        Latest Observations of Intruders
       </Typography>
       <Box display={"flex"} width={wholeWidth} height={wholeWidth}>
         <Stage
           x={(wholeWidth - circleDiameter) / 2}
+          y={5}
           width={wholeWidth}
           height={wholeWidth}
         >
           <Layer>
             <Group>
+              <Text
+                x={circleDiameter / 9}
+                y={circleDiameter / 9}
+                rotation={-40}
+                text="NDZ"
+                fontSize={22}
+                fontStyle="bold"
+                fill="white"
+              />
+              <Circle
+                ref={ndzCircle}
+                radius={100 * scaleMultiplier}
+                x={circleDiameter / 2}
+                y={circleDiameter / 2}
+                fill="#E8C845"
+                strokeWidth={5}
+                stroke="black"
+              />
               <Circle
                 ref={nest}
                 radius={2.5}
@@ -70,24 +95,6 @@ const DroneMap = ({ drones }) => {
                 x={circleDiameter / 2}
                 y={circleDiameter / 2}
               />
-              <Text
-                x={circleDiameter / 9}
-                y={circleDiameter / 8}
-                rotation={-40}
-                text="NDZ"
-                fontSize={22}
-                fontStyle="bold"
-              />
-              <Circle
-                ref={ndzCircle}
-                radius={100 * scaleMultiplier}
-                x={circleDiameter / 2}
-                y={circleDiameter / 2}
-                fill="Red"
-                opacity={0.3}
-                strokeWidth={5}
-                stroke="white"
-              ></Circle>
               {drones.map((drone) => {
                 return renderDrone(drone)
               })}

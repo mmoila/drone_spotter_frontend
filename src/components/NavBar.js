@@ -26,7 +26,7 @@ const NavBar = () => {
   }
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#607d8b" }}>
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <TrackChangesIcon
@@ -37,13 +37,10 @@ const NavBar = () => {
             noWrap
             component={RouterLink}
             to="/"
+            color="inherit"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "roboto",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
               textDecoration: "none",
             }}
           >
@@ -81,7 +78,13 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link component={RouterLink} to="/mapview" textAlign="center">
+                  <Link
+                    component={RouterLink}
+                    to="/mapview"
+                    textAlign="center"
+                    color="inherit"
+                    sx={{ textDecoration: "none" }}
+                  >
                     {page}
                   </Link>
                 </MenuItem>
@@ -95,15 +98,12 @@ const NavBar = () => {
             variant="h5"
             noWrap
             component={RouterLink}
+            color="inherit"
             to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "roboto",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
               textDecoration: "none",
             }}
           >
@@ -112,8 +112,9 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               component={RouterLink}
+              color="inherit"
               to={"/mapview"}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, display: "block" }}
             >
               Mapview
             </Button>

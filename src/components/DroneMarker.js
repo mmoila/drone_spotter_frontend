@@ -9,7 +9,7 @@ const DroneMarker = ({ xPos, yPos, setShowDetailsFor }) => {
       radius={7.5}
       fill="grey"
       strokeWidth={1}
-      stroke="white"
+      stroke="black"
       onClick={setShowDetailsFor}
       onTouchEnd={setShowDetailsFor}
     />

@@ -14,7 +14,16 @@ const DroneList = ({ drones }) => {
     return
   }
   return (
-    <TableContainer component={Paper} sx={{ marginTop: 5 }}>
+    <TableContainer
+      component={Paper}
+      sx={{
+        marginTop: 5,
+        paddingBottom: 10,
+        borderWidth: 2,
+      }}
+      elevation={20}
+      variant="outlined"
+    >
       <Typography variant="h3" component={"h1"} m={5} align={"center"}>
         No Drone Zone intrudes
       </Typography>

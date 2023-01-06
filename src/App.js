@@ -41,7 +41,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <Container disableGutters={true} maxWidth={false}>
       <NavBar />
       <Container className="App">
         <Routes>
@@ -49,7 +49,7 @@ function App() {
           <Route path="/mapview" element={<DroneMap drones={drones} />} />
         </Routes>
       </Container>
-    </>
+    </Container>
   )
 }
 
