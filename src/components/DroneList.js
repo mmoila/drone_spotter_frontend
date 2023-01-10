@@ -21,7 +21,6 @@ const DroneList = ({ drones }) => {
         paddingBottom: 10,
         borderWidth: 2,
       }}
-      elevation={20}
       variant="outlined"
     >
       <Typography variant="h3" component={"h1"} m={5} align={"center"}>

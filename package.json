@@ -7,9 +7,9 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.0",
-    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "canvas": "^2.11.0",
     "konva": "^8.3.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "deploy": "cp -r build ../drone_spotter_backend",
     "build-deploy": "npm run build && npm run deploy",
-    "test": "react-scripts test",
+    "test": "CI=true react-scripts test",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001",
@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "eslint": "^8.29.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
