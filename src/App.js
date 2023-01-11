@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react"
-import NavBar from "./components/NavBar"
-import DroneList from "./components/DroneList"
 import Container from "@mui/material/Container"
 import { Routes, Route } from "react-router-dom"
+import NavBar from "./components/NavBar"
+import DroneList from "./components/DroneList"
 import DroneMap from "./components/DroneMap"
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
   }, [])
 
   return (
-    <Container disableGutters={true} maxWidth={false}>
+    <Container disableGutters maxWidth={false}>
       <NavBar />
       <Container className="App">
         <Routes>

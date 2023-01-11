@@ -54,14 +54,14 @@ const DroneMap = ({ drones }) => {
     >
       <Typography
         variant="h4"
-        component={"h1"}
+        component="h1"
         m={5}
-        align={"center"}
+        align="center"
         color="white"
       >
         Latest Observations of Intruders
       </Typography>
-      <Box display={"flex"} width={wholeWidth} height={wholeWidth}>
+      <Box display="flex" width={wholeWidth} height={wholeWidth}>
         <Stage
           x={(wholeWidth - circleDiameter) / 2}
           y={5}
@@ -95,9 +95,7 @@ const DroneMap = ({ drones }) => {
                 x={circleDiameter / 2}
                 y={circleDiameter / 2}
               />
-              {drones.map((drone) => {
-                return renderDrone(drone)
-              })}
+              {drones.map((drone) => renderDrone(drone))}
               {showDetailsFor ? (
                 <DroneDetails
                   drones={drones}

@@ -11,7 +11,7 @@ const DroneList = ({ drones }) => {
     return time.toUTCString().slice(0, -7)
   }
   if (!drones) {
-    return
+    return null
   }
   return (
     <TableContainer
@@ -23,7 +23,7 @@ const DroneList = ({ drones }) => {
       }}
       variant="outlined"
     >
-      <Typography variant="h3" component={"h1"} m={5} align={"center"}>
+      <Typography variant="h3" component="h1" m={5} align="center">
         No Drone Zone intrudes
       </Typography>
       <Table>

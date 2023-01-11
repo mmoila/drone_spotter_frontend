@@ -2,7 +2,7 @@ import { Label, Tag, Text } from "react-konva"
 
 const DroneDetails = ({ drones, showDetailsFor, calculateScaledPosition }) => {
   const drone = drones.find(
-    (d) => d.serialNumber === showDetailsFor.serialNumber
+    (d) => d.serialNumber === showDetailsFor.serialNumber,
   )
   if (!drone) {
     return null
@@ -16,8 +16,8 @@ const DroneDetails = ({ drones, showDetailsFor, calculateScaledPosition }) => {
           \nSerial: ${drone.serialNumber}\
           \nOwner: ${drone.owner.name}\
           \nClosest distance to the nest: ${(
-            drone.closestDistance / 1000
-          ).toFixed(1)} m`}
+          drone.closestDistance / 1000
+        ).toFixed(1)} m`}
         padding={5}
         lineHeight={1.2}
       />

@@ -113,7 +113,7 @@ const NavBar = () => {
             <Button
               component={RouterLink}
               color="inherit"
-              to={"/mapview"}
+              to="/mapview"
               sx={{ my: 2, display: "block" }}
             >
               Mapview
